@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('quiz_id');
             $table->string('top_id');
             $table->string('success')->default(false);
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

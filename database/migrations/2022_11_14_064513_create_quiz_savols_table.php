@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('type')->default('0');
             $table->text('text');
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

@@ -13,8 +13,12 @@
     <link rel="stylesheet" href="{{ asset("assets/css/animate.min.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/css/all-fontawesome.min.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/css/bootstrap.min.css") }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
     <link rel="stylesheet" href="{{ asset("assets/css/main.css") }}">
     @livewireStyles
+    @livewireScripts
+
 </head>
 
 <body>
@@ -73,14 +77,10 @@
                     <span>12</span>
                 </div>
                 <div class="navbar-item dropdown">
-
                     <a class="user_name dropdown-toggle " href="#" data-bs-toggle="dropdown">
-                        <img class="img" src=" @if (Auth::user()->image==null)
-                        {{ asset("assets/img/user/01.png") }}
-                        @endif
-                        @if (Auth::user()->image!==null)
-                        {{ asset("assets/img/user/".Auth::user()->image) }}
-                        @endif">
+                        <img class="img" src="
+
+                        {{ asset("storage/user/".Auth::user()->image) }}">
 
                         <h6>
                             @if (Auth::user()->name==null)
@@ -94,10 +94,13 @@
                         </li>
                         <li><a class="dropdown-item" href="/student-single">Profil</a>
                         </li>
-                        <li><a class="dropdown-item" href="/admin/">Adminpanel</a>
+                        @if (Auth::user()->roll_id==5)
+                            <li><a class="dropdown-item" href="{{ url('/admin') }}">Adminpanel</a>
+
+
+                        @endif
                         </li>
-                        <li><a class="dropdown-item" href="/user/edit">Profile
-                                Settings</a></li>
+                        <li><a class="dropdown-item" href="{{ url("/profil-edit") }}">Edit profile</a></li>
 
                         <li>
                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -172,7 +175,6 @@
     <script>
         new WOW().init();
     </script>
-    @livewireScripts
 </body>
 
 </html>

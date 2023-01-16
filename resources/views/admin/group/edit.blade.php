@@ -42,19 +42,22 @@
                                           <div class="mb-3 col-md-6">
                                             <label class="form-label">Kours</label>
                                             <select id="inputState" required class="default-select form-control wide" name="course">
+                                                @foreach ($level as $lev )
+                                                <option value="{{$lev->id}}" @if ($lev->id==$data_uz->level_id)
+                                                  selected
+                                                @endif>{{$lev->name}}</option>
+                                                @endforeach
 
-                                              <option value="1" @if ($data_uz->kurs==1)
-                                                selected
-                                              @endif>1-kurs</option>
-                                              <option  @if ($data_uz->kurs==1)
-                                                selected
-                                              @endif value="2">2-kurs</option>
-                                              <option  @if ($data_uz->kurs==1)
-                                                selected
-                                              @endif value="3">3-kurs</option>
-                                              <option  @if ($data_uz->kurs==1)
-                                                selected
-                                              @endif value="4">4-kurs</option>
+                                            </select>
+                                          </div>
+                                          <div class="mb-3 col-md-6">
+                                            <label class="form-label">Language</label>
+                                            <select id="inputState" required class="default-select form-control wide" name="lang">
+                                                @foreach ($langs as $leng )
+                                                <option value="{{$leng->id}}" @if ($leng->id==$data_uz->lang_id)
+                                                  selected
+                                                @endif>{{$leng->name}}</option>
+                                                @endforeach
 
                                             </select>
                                           </div>

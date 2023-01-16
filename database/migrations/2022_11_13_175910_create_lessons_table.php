@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('content');
             $table->string('started_at');
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('savol_id');
             $table->string('javob_id');
             $table->string('result')->default('0');
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

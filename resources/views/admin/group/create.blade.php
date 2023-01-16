@@ -25,23 +25,20 @@
                               <form action="{{route('admin.group.store')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                  <div class="mb-3 col-md-12">
-                                    <label class="form-label" for="name_uz">Name(uz)</label>
-                                    <input type="text" class="form-control" required placeholder="Name"  name="name_uz" id="name_uz"/>
-                                  </div>
-                                  <div class="mb-3 col-md-12">
-                                    <label class="form-label" for="name_ru">Name(ru)</label>
-                                    <input type="text" class="form-control" required placeholder=""  name="name_ru" id="name_ru"/>
-                                  </div>
-                                  <div class="mb-3 col-md-12">
-                                    <label class="form-label" for="name_en">Name(en)</label>
-                                    <input type="text" class="form-control" required placeholder=""  name="name_en" id="name_en"/>
-                                  </div>
                                   <div class="mb-3 col-md-6">
                                     <label class="form-label">Kafedra</label>
-                                    <select id="inputState" required class="default-select form-control wide" name="kafedra">
+                                    <select id="inputState" required class="default-select form-control wide" name="lang">
                                       <option selected>Choose...</option>
                                       @foreach ($kafedra as $data )
+                                      <option value="{{$data->id}}">{{$data->name}}</option>
+                                      @endforeach
+                                    </select>
+                                  </div>
+                                  <div class="mb-3 col-md-6">
+                                    <label class="form-label">Group language</label>
+                                    <select id="inputState" required class="default-select form-control wide" name="kafedra">
+                                      <option selected>Choose...</option>
+                                      @foreach ($langs as $data )
                                       <option value="{{$data->id}}">{{$data->name}}</option>
                                       @endforeach
                                     </select>
@@ -50,13 +47,24 @@
                                     <label class="form-label">Kours</label>
                                     <select id="inputState" required class="default-select form-control wide" name="course">
                                       <option selected>Choose...</option>
-                                      <option value="1">1-kurs</option>
-                                      <option value="2">2-kurs</option>
-                                      <option value="3">3-kurs</option>
-                                      <option value="4">4-kurs</option>
-
+                                      @foreach ($level as $data )
+                                      <option value="{{$data->id}}">{{$data->name}}</option>
+                                      @endforeach
                                     </select>
                                   </div>
+                                  <div class="mb-3 col-md-12">
+                                    <label class="form-label" for="name_uz">Name(uz)</label>
+                                    <input type="text" class="form-control" required placeholder="Name uz"  name="name_uz" id="name_uz"/>
+                                  </div>
+                                  <div class="mb-3 col-md-12">
+                                    <label class="form-label" for="name_ru">Name(ru)</label>
+                                    <input type="text" class="form-control" required placeholder="Name ru"  name="name_ru" id="name_ru"/>
+                                  </div>
+                                  <div class="mb-3 col-md-12">
+                                    <label class="form-label" for="name_en">Name(en)</label>
+                                    <input type="text" class="form-control" required placeholder="Name en"  name="name_en" id="name_en"/>
+                                  </div>
+
                                 </div>
                                 <div class="mb-3">
                                   <div class="form-check">

@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('cource_responces', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
+            $table->string('status')->default(false);
+            $table->string('is_deleted')->default(false);
+            $table->string('name');
+            $table->text('content');
             $table->timestamps();
         });
     }

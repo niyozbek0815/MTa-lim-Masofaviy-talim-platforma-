@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('watch_count');
             $table->string('urinishlar_count');
             $table->string('time_minut');
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

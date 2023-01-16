@@ -2745,3 +2745,15 @@ video {
 .send-response1 .card .cource-teacher {
     margin-top: 15px
 }
+
+.edit-image {
+    width: 100%;
+    text-align: left;
+}
+
+.form-img {
+    text-align: left;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}

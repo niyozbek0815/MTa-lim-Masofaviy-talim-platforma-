@@ -25,7 +25,7 @@ class TeacherController extends Controller
     )
     ->select(
         'users.*', 'kafedra_' . $lang . 's.name as kafedra_name')
-        ->where('users.roll_id', '=', 1)
+        ->where('users.roll_id', '=', 2)
     ->get( )->toArray();
 
        return view("admin.teacher.index",['datas'=>$data]);
@@ -140,7 +140,8 @@ return redirect('/admin/teacher')->with(['success' =>'ALL_SUCCESSFULL_SAVED']);
    public function destroy($id)
    {
        $data=User::find($id);
-       $data->delete();
+       $data->is_deleted=1;
+        $data->save();
        return redirect()->back()->with(['success'=>"ALL_SUCCESSFUL_DELETED"]);
    }
 }

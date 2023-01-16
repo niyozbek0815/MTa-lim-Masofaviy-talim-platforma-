@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('group_level_rus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

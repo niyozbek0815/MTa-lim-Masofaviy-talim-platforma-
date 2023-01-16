@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('img');
             $table->string("oquv_yili");
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

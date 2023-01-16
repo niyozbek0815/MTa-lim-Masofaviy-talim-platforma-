@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('lesson_top_is');
             $table->string('name');
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

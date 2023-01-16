@@ -25,6 +25,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>Language</th>
                                     <th>Kours</th>
                                     <th>Kafedra</th>
                                     <th>Status</th>
@@ -36,7 +37,8 @@
                                     <tr>
                                         <td><strong>{{($loop->index+1)}}</strong></td>
                                         <td>{{ $data->name }}</td>
-                                        <td>{{ $data->kurs }} -kurs</td>
+                                        <td>{{ $data->lang_name }}</td>
+                                        <td>{{ $data->level_name }}</td>
                                         <td>{{ $data->kafedra_name }}</td>
 
 

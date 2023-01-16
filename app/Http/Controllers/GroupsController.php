@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Langs;
 use App\Models\Group;
 use App\Models\Group_en;
 use App\Models\Group_ru;
 use App\Models\Group_uz;
 use App\Models\Kafedra;
+use App\Models\Lang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,10 +27,21 @@ class GroupsController extends Controller
                 'kafedra_' . $lang . 's', 'kafedra_' . $lang . 's.id',
                 '=', 'group_' . $lang . 's.caf_id'
             )
-            ->select(
-                'group_' . $lang . 's.*', 'kafedra_' . $lang . 's.name as kafedra_name'
+            ->leftjoin(
+                'group_level_' . $lang . 's', 'group_level_' . $lang . 's.id',
+                '=', 'group_' . $lang . 's.level_id'
             )
-            ->get(     )->toArray();
+            ->leftjoin(
+                'langs', 'langs.id',
+                '=', 'group_' . $lang . 's.lang_id'
+            )
+            ->select(
+                'group_' . $lang . 's.*', 'kafedra_' . $lang . 's.name as kafedra_name',
+                'group_' . $lang . 's.*', 'group_level_' . $lang . 's.name as level_name',
+                'group_' . $lang . 's.*',  'langs.name as lang_name',
+
+            )
+            ->get(  )->toArray();
         return view('admin.group.index', ['datas' => $data]);
     }
 
@@ -41,7 +54,9 @@ class GroupsController extends Controller
     {
         $lang = app()->getLocale('lang');
         $data = DB::table('kafedra_' . $lang . 's')->get();
-        return view('admin.group.create', ['kafedra' => $data]);
+        $level = DB::table('group_level_' . $lang . 's')->get();
+        $langs = Lang::get();
+        return view('admin.group.create', ['kafedra' => $data,'langs'=>$langs,'level'=>$level]);
     }
     public function is_active($id)
     {
@@ -69,7 +84,8 @@ class GroupsController extends Controller
                 'kafedra' => 'required|max:255',
                 'name_ru' => 'required|max:255',
                 'name_en' => 'required|max:255',
-                'course' => 'required'
+                'course' => 'required',
+                'lang'=>"required"
             ]
         );
         $saving_uz = new Group_uz();
@@ -78,12 +94,15 @@ class GroupsController extends Controller
         $saving_uz->name = $data['name_uz'];
         $saving_ru->name = $data['name_ru'];
         $saving_en->name = $data['name_en'];
-        $saving_uz->kurs = $data['course'];
-        $saving_ru->kurs = $data['course'];
-        $saving_en->kurs = $data['course'];
+        $saving_uz->level_id = $data['course'];
+        $saving_ru->level_id = $data['course'];
+        $saving_en->level_id = $data['course'];
         $saving_uz->caf_id = $data['kafedra'];
         $saving_en->caf_id = $data['kafedra'];
         $saving_ru->caf_id = $data['kafedra'];
+        $saving_ru->lang_id = $data['lang'];
+        $saving_en->lang_id = $data['lang'];
+        $saving_uz->lang_id = $data['lang'];
         if ($request['activ'] == 'on') {
             $saving_uz->is_active = 1;
             $saving_ru->is_active = 1;
@@ -118,12 +137,14 @@ class GroupsController extends Controller
      */
     public function edit($id)
     {
-        $lang = app()->etLocale('lang');
+        $lang = app()->getLocale('lang');
         $kafedra = DB::table('kafedra_' . $lang . 's')->get();
+        $level = DB::table('group_level_' . $lang . 's')->get();
+        $langs = Lang::get();
         $data_uz = Group_uz::find($id);
         $data_en = Group_en::find($id);
         $data_ru = Group_ru::find($id);
-        return view('admin.group.edit', ['data_uz' => $data_uz, 'data_ru' => $data_ru, 'data_en' => $data_en, 'kafedra' => $kafedra]);
+        return view('admin.group.edit', ['level'=>$level,'langs'=>$langs,'data_uz' => $data_uz, 'data_ru' => $data_ru, 'data_en' => $data_en, 'kafedra' => $kafedra]);
     }
 
     /**
@@ -141,7 +162,8 @@ class GroupsController extends Controller
                 'name_ru' => 'required|max:255',
                 'name_en' => 'required|max:255',
                 'kafedra' => 'required',
-                'course' => 'required'
+                'course' => 'required',
+                'lang'=>"required"
             ]
         );
         $saving_uz = Group_uz::find($id);
@@ -150,12 +172,15 @@ class GroupsController extends Controller
         $saving_uz->name = $data['name_uz'];
         $saving_ru->name = $data['name_ru'];
         $saving_en->name = $data['name_en'];
-        $saving_uz->kurs = $data['course'];
+        $saving_uz->level_id = $data['course'];
         $saving_uz->caf_id = $data['kafedra'];
-        $saving_ru->kurs = $data['course'];
+        $saving_ru->level_id = $data['course'];
         $saving_ru->caf_id = $data['kafedra'];
-        $saving_en->kurs = $data['course'];
+        $saving_en->level_id = $data['course'];
         $saving_en->caf_id = $data['kafedra'];
+        $saving_uz->lang_id = $data['lang'];
+        $saving_ru->lang_id = $data['lang'];
+        $saving_en->lang_id = $data['lang'];
         if ($request['activ'] == 'on') {
             $saving_uz->is_active = 1;
             $saving_ru->is_active = 1;
@@ -183,10 +208,14 @@ class GroupsController extends Controller
         $data_uz = Group_uz::find($id);
         $data_ru = Group_ru::find($id);
         $data_en = Group_en::find($id);
-        $data_en->delete();
-        $data_ru->delete();
-        $data_uz->delete();
+        $data_en->is_deleted=1;
+        $data_ru->is_deleted=1;
+        $data_uz->is_deleted=1;
+        $data_en->save();
+        $data_ru->save();
+        $data_uz->save();
         return redirect()->back()->withErrors(['success' => 'ALL_SUCCESSFUL_DELETED']);
 
     }
+
 }

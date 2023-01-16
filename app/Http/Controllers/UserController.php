@@ -25,7 +25,7 @@ class UserController extends Controller
             )
             ->select(
                 'users.*', 'group_' . $lang . 's.name as group_name')
-                ->where('users.roll_id', '=', 0)
+                ->where('users.roll_id', '=', 1)
             ->get( )->toArray();
 
         return view("admin.user.index",['datas'=>$data]);
@@ -140,7 +140,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         $data=User::find($id);
-        $data->delete();
+        $data->is_deleted=1;
+        $data->save();
         return redirect()->back()->with(['success'=>"ALL_SUCCESSFUL_DELETED"]);
     }
 }

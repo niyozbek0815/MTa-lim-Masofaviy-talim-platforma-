@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('savol_id');
             $table->string('variant');
             $table->string('ball');
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

@@ -29,6 +29,9 @@ class User extends Authenticatable
     public function kafedra_en(){
         return $this->belongsTo(Kafedra_en::class, 'kafedra_id', 'id');
     }
+    public function cource_response(){
+        return $this->belongsTo(Cource_responce::class, 'user_id', 'id');
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -64,5 +67,6 @@ class User extends Authenticatable
     ];
     protected $attributes = [
         'roll_id' => '1',
+        'image'=>"user-logo.png",
     ];
 }

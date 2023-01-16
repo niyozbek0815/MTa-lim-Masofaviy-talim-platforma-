@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('max_ball');
             $table->string('started_at');
             $table->string('stopped_at');
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

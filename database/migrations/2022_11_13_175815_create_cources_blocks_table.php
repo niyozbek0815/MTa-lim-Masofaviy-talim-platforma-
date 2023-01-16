@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('cources_blocks', function (Blueprint $table) {
             $table->id();
             $table->string('text');
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

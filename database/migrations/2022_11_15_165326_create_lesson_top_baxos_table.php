@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('group_id');
             $table->string('baxo');
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }

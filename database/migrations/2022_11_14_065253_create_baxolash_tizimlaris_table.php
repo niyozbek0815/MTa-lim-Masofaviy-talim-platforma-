@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('joriy_ball')->nullable();
             $table->string('yakuniy_ball')->nullable();
             $table->string('max_ball')->nullable();
+            $table->string('is_deleted')->default(false);
             $table->timestamps();
         });
     }
