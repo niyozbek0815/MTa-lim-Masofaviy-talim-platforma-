@@ -1294,8 +1294,8 @@
                             <span class="nav-text">Users</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="/admin/teacher">Teacher</a></li>
-                            <li><a href="/admin/user">Student</a></li>
+                            <li><a href="{{ url('/admin/teacher') }}">Teacher</a></li>
+                            <li><a href="{{ url('/admin/user') }}">Student</a></li>
 
                         </ul>
 
@@ -1306,7 +1306,7 @@
                             <span class="nav-text">Kafedra</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="/admin/kafedra">Kafedra</a></li>
+                            <li><a href="{{ url("/admin/kafedra") }}">Kafedra</a></li>
                         </ul>
 
                     </li>
@@ -1316,17 +1316,19 @@
                             <span class="nav-text">Group</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="/admin/group">Groups</a></li>
+                            <li><a href="{{ url('/admin/group') }}">Groups</a></li>
                         </ul>
 
                     </li>
                     <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                             <i class="bi bi-book"></i>
 
-                            <span class="nav-text">Rools</span>
+                            <span class="nav-text">Rools & Language</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="/admin/kadedra">Rools</a></li>
+                            <li><a href="{{ url('/admin/rolls') }}">Rools</a></li>
+                            <li><a href="{{ url('/admin/lang') }}">Language</a></li>
+
                         </ul>
 
                     </li>
