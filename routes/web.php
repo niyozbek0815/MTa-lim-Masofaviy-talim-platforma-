@@ -57,6 +57,7 @@ Route::prefix('teacher')->name('teacher.')->middleware('is_Teacher')->group(func
 Route::prefix('mudir')->name('mudir.')->middleware('is_Mudir')->group(function () {
     Route::get('/cource-response', [Mudir_create_cources_Controller::class, 'index']);
     Route::get("/mudir-profil", [PagesController::class,'m_profil']);
+    Route::get("/mudir-profil", [PagesController::class,'m_profil']);
 
 });
 
