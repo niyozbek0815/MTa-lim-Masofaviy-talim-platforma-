@@ -18,7 +18,7 @@ class TeacherController extends Controller
    public function index()
    {
     $lang = app()->getLocale('lang');
-    $data = DB::table('users')
+    $data = DB::table('users')->where('is_deleted','=','0')
     ->leftjoin(
         'kafedra_' . $lang . 's', 'kafedra_' . $lang . 's.id',
         '=', 'users.kafedra_id'
@@ -40,8 +40,7 @@ class TeacherController extends Controller
    {
     $lang= app()->getLocale('lang');
     $group=DB::table('kafedra_'.$lang.'s')->get();
-
-       return view('admin.teacher.create',['group'=>$group]);
+    return view('admin.teacher.create',['group'=>$group]);
    }
    public function is_active($id){
        $data=User::find($id);

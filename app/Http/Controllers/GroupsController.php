@@ -22,7 +22,7 @@ class GroupsController extends Controller
     public function index()
     {
         $lang = app()->getLocale('lang');
-        $data = DB::table('group_' . $lang . 's')
+        $data = DB::table('group_' . $lang . 's')->where('is_deleted','=','0')
             ->leftjoin(
                 'kafedra_' . $lang . 's', 'kafedra_' . $lang . 's.id',
                 '=', 'group_' . $lang . 's.caf_id'

@@ -21,7 +21,7 @@ class KafedraController extends Controller
     public function index()
     {
         $lang = app()->getLocale('lang');
-        $data = DB::table('kafedra_'.$lang.'s')->get();
+        $data = DB::table('kafedra_'.$lang.'s')_>where('is_deleted','=','0')->get();
         return view('admin.kafedra.index', ['datas' => $data]);
     }
 
@@ -165,9 +165,12 @@ class KafedraController extends Controller
         $data_uz = Kafedra_uz::find($id);
         $data_en = Kafedra_en::find($id);
         $data_ru = Kafedra_ru::find($id);
-        $data_uz->delete();
-        $data_en->delete();
-        $data_ru->delete();
+        $data_uz->is_deleted=1;
+        $data_en->is_deleted=1;
+        $data_ru->is_deleted=1;
+        $data_en->save();
+        $data_ru->save();
+        $data_uz->save();
         return redirect()->back()->with(['success' => 'ALL_SUCCESSFUL_DELETED']);
     }
 }

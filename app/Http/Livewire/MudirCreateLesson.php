@@ -31,6 +31,6 @@ class MudirCreateLesson extends Component
     {
         return view('livewire.mudir-create-lesson',[
 
-            'response'=>Cource_responce::latest()->where("is_deleted",'=',0)->where('status','=',0)->paginate(1)]);
+            'response'=>Cource_responce::latest()->where("is_deleted",'=',0)->where('status','=',0)->paginate(5)]);
     }
 }
