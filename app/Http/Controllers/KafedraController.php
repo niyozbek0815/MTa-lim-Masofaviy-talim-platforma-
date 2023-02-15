@@ -21,7 +21,7 @@ class KafedraController extends Controller
     public function index()
     {
         $lang = app()->getLocale('lang');
-        $data = DB::table('kafedra_'.$lang.'s')_>where('is_deleted','=','0')->get();
+        $data = DB::table('kafedra_'.$lang.'s')->where('is_deleted','=','0')->get();
         return view('admin.kafedra.index', ['datas' => $data]);
     }
 

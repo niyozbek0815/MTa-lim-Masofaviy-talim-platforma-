@@ -44,6 +44,7 @@ Route::prefix('admin')->name('admin.')->middleware('is_Admin')->group(function()
     Route::resource('/cources', CourcesController::class);
     Route::resource('/lang', LangConrtroller::class);
     Route::get('/rolls',[AdminController::class,'rolls']);
+    Route::get('/cource-tip',[AdminController::class,'cource_tip']);
     Route::post('/kafedra/isactive/{id}',[KafedraController::class,'is_active']);
     Route::post('/group/isactive/{id}',[GroupsController::class,'is_active']);
     Route::post('/user/isactive/{id}',[UserController::class,'is_active']);
@@ -71,7 +72,6 @@ Route::post('/profil-edit/save', [PagesController::class, 'p_save'])->middleware
 Route::get('/student-profil', [PagesController::class, 's_profil']);
 Route::get('/cource-single', [PagesController::class, 'c_single']);
 Route::get('/search-cources', [PagesController::class, 's_cource']);
-
 
 Auth::routes();
 

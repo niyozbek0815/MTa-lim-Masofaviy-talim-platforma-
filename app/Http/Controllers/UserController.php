@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $lang = app()->getLocale('lang');
-        $data = DB::table('users')->where('is_deleted','=','0')
+        $data = DB::table('users')->where('users.is_deleted','=','0')
             ->leftjoin(
                 'group_' . $lang . 's', 'group_' . $lang . 's.id',
                 '=', 'users.group_id'

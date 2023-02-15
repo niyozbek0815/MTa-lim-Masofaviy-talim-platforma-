@@ -7,13 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset("assets/img/logo/logo-white.png") }}">
     <title>MTa'lim</title>
+
+    <!-- FAVICONS ICON -->
+
+    <link href="{{ asset('vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset("vendor/select2/css/select2.min.css")}}" />
+    <link href="{{ asset('vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset("assets/css/animate.min.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/css/all-fontawesome.min.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/css/main.css") }}">
-    @livewireStyles
+ @livewireStyles
     @livewireScripts
 </head>
 
@@ -168,8 +175,23 @@
     <script src="{{ asset("assets/js/bootstrap.bundle.min.js ") }}"></script>
     <script src="{{ asset("assets/js/wow.min.js") }} "></script>
     <script src="{{ asset("assets/js/main.js") }} "></script>
+    <script src="{{ asset('./vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('./js/plugins-init/sweetalert.init.js') }}"></script>
+    <script src="{{ asset('./vendor/global/global.min.js') }}"></script>
+    <script src="{{ asset('./vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{asset('./vendor/select2/js/select2.full.min.js')}}"></script>
+    <script src="{{asset('/js/plugins-init/select2-init.js')}}"></script>
+    <script src="{{ asset('./js/custom.js') }}"></script>
+    <script src="{{ asset('./js/dlabnav-init.js') }}"></script>
+    <script src="{{ asset('./js/demo.js') }}"></script>
+
     <script>
         new WOW().init();
+        $(document).ready(function() {
+  $('.js-states').niceSelect();
+});
+
+
     </script>
 </body>
 

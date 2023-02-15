@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            Cource_tip::class,
             UserSeeder::class,
             RollSeeder::class,
             LangSeeder::class,

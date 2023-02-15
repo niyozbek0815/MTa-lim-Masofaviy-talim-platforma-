@@ -1289,6 +1289,16 @@
 
                     </li>
                     <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                        <i class="bi bi-book"></i>
+
+                        <span class="nav-text">Kafedra</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ url("/admin/kafedra") }}">Kafedra</a></li>
+                    </ul>
+
+                </li>
+                    <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                             <i class="bi bi-book"></i>
 
                             <span class="nav-text">Users</span>
@@ -1296,20 +1306,11 @@
                         <ul aria-expanded="false">
                             <li><a href="{{ url('/admin/teacher') }}">Teacher</a></li>
                             <li><a href="{{ url('/admin/user') }}">Student</a></li>
-
+                            <li><a href="{{ url('/admin/rolls') }}">Rools</a></li>
                         </ul>
 
                     </li>
-                    <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
-                            <i class="bi bi-book"></i>
 
-                            <span class="nav-text">Kafedra</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ url("/admin/kafedra") }}">Kafedra</a></li>
-                        </ul>
-
-                    </li>
                     <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                             <i class="bi bi-book"></i>
 
@@ -1323,11 +1324,11 @@
                     <li><a class="has-arrow " href="javascript:void(0);" aria-expanded="false">
                             <i class="bi bi-book"></i>
 
-                            <span class="nav-text">Rools & Language</span>
+                            <span class="nav-text">Cources</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url('/admin/rolls') }}">Rools</a></li>
-                            <li><a href="{{ url('/admin/lang') }}">Language</a></li>
+                            <li><a href="{{ url('/admin/cource-tip') }}">Cource-tip</a></li>
+                            <li><a href="{{ url('/admin/lang') }}">Cource Language</a></li>
 
                         </ul>
 

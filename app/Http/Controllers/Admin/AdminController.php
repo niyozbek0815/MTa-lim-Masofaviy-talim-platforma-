@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cources_tip;
 use App\Models\Roll;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,11 @@ class AdminController extends Controller
     {
         $data=Roll::get();
         return view('admin.rolls', ['rolls' => $data]);
+    }
+    public function cource_tip()
+    {
+        $data = Cources_tip::get();
+        return view('admin.tip' , ['tip' => $data]);
     }
 
     public function index()
